@@ -26,6 +26,12 @@ app.use(
 app.use(express.json());
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Hello Mentor :) Thank you for your review <3',
+  });
+});
+
 app.get('/notes', (req, res) => {
   res.status(200).json({
     message: 'Retrieved all notes',
