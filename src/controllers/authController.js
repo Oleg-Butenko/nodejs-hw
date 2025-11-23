@@ -4,7 +4,7 @@ import bcrypt from 'bcrypt';
 import { createSession, setSessionCookies } from '../services/auth.js';
 import { Session } from '../models/session.js';
 import jwt from 'jsonwebtoken';
-import { sendEmail } from '../utils/sendEmail.js';
+import { sendEmail } from '../utils/sendMail.js';
 import handlebars from 'handlebars';
 import path from 'node:path';
 import fs from 'node:fs/promises';
@@ -102,7 +102,7 @@ export const requestResetEmail = async (req, res, next) => {
 
   if (!user) {
     return res.status(200).json({
-      message: 'If this email exists, a reset link has been sent',
+      message: 'Password reset email sent successfully',
     });
   }
 
@@ -135,7 +135,7 @@ export const requestResetEmail = async (req, res, next) => {
   }
 
   res.status(200).json({
-    message: 'If this email exists, a reset link has been sent',
+    message: 'Password reset email sent successfully',
   });
 };
 
@@ -161,6 +161,6 @@ export const resetPassword = async (req, res, next) => {
   await Session.deleteMany({ userId: user._id });
 
   res.status(200).json({
-    message: 'Password reset successfully. Please log in again.',
+    message: 'Password reset email sent successfully',
   });
 };
