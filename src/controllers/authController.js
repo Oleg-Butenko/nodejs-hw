@@ -161,6 +161,6 @@ export const resetPassword = async (req, res, next) => {
   await Session.deleteMany({ userId: user._id });
 
   res.status(200).json({
-    message: 'Password reset email sent successfully',
+    message: 'Password reset successfully. Please log in again.',
   });
 };
